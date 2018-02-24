@@ -26,7 +26,10 @@ public class MapSquare {
 		
 	}
 	public Vector2 getPosition(){return this.position;}
-
+	public void setG(int g){this.g=g;}
+	public void setH(int h){this.h=h;}
+	public void setBlocked(boolean blocked){this.blocked=blocked;}
+	public void setParent(MapSquare p){this.parent = p;}	
 	public String toString(){
 		return ""+ getDirection(parent) +"" +  g + "" + (blocked ? 'X' : '_') + "" + h+ "" +  getDirection(parent);
 	}
