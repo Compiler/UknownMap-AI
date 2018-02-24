@@ -19,5 +19,7 @@ public class Map{
 	}
 
 	public MapFlags getMapInfo(int x, int y){ return map[x][y]; }
+	
+	public void printMap(int)
 
 }
