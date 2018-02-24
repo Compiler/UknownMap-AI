@@ -27,6 +27,9 @@ public class Map{
 
 		stack.push(cur);
 		Random rand = new Random();
+		boolean completed = false;
+
+		while(!completed){
             while(stack.empty() == false){
                 cur=stack.pop();
 				if(visits[cur.x][cur.y] == 1) continue;
@@ -55,6 +58,15 @@ public class Map{
                  
                  
             }
+			completed = true;
+			for(int i = 0; i < visits.length; i++){
+				for(int k = 0; k < visits.length; k++){
+					if(visits[i][k] == 0){
+						cur = new Vector2(i, k); completed = false;
+					}
+				}
+			}
+		}
 
 	}
 	public void setSquare(int x, int y, MapSquare flag){
