@@ -3,24 +3,33 @@
 
 public class Map{
 
-	public enum MapFlags{OPEN, VISITED, BLOCKED, START, FINISH}
 
 	private Vector2 dimensions;
-	private MapFlags map[][];
+	private MapSquare map[][];
 	
 	public Map(int width, int height){
 		dimensions = new Vector2(width, height);
-		map = new MapFlags[dimensions.x][dimensions.y];
+		map = new MapSquare[dimensions.x][dimensions.y];
 		
 	}
 
-	public void setBlock(int x, int y, MapFlags flag){
+	public void setBlock(int x, int y, MapSquare flag){
 		map[x][y] = flag;
 	}
 
-	public MapFlags getMapInfo(int x, int y){ return map[x][y]; }
+
+	public MapSquare getMapSquare(int x, int y){ return map[x][y]; }
 	
-	public void printMap(int)
+	public void printMap(){
+		System.out.print('|');
+		for(int i = dimensions.y; i > -1; i++){
+			for(int k = 0; k < dimensions.x; k++){
+				System.out.print(map[k][i] + "|");
+			}
+			System.out.print('\n' + "|");
+		}	
+	}
+
 
 }
 //
