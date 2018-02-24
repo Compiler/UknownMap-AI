@@ -1,4 +1,4 @@
-
+import java.util.*;
 
 
 public class Map{
@@ -19,6 +19,44 @@ public class Map{
 		}}
 	}
 
+
+	public void createRandomMap(){
+		int visits[][] = new int[dimensions.x][dimensions.y];
+		Vector2 cur = new Vector2(0, 0);
+		Stack<Vector2> stack = new Stack<Vector2>();
+
+		stack.push(cur);
+		Random rand = new Random();
+            while(stack.empty() == false){
+                cur=stack.pop();
+				if(visits[cur.x][cur.y] == 1) continue;
+				else visits[cur.x][cur.y] = 1;
+				if(rand.nextDouble() > 0.7)
+					map[cur.x][cur.y].setBlocked(true);
+				
+				
+				
+				if(cur.x > 0){
+					Vector2 nxt = new Vector2(cur.x-1, cur.y);
+					if(visits[nxt.x][nxt.y] == 0)stack.push(nxt);
+				}
+				if(cur.y > 0){
+					Vector2 nxt = new Vector2(cur.x, cur.y-1);
+					if(visits[nxt.x][nxt.y] == 0)stack.push(nxt);
+				}	
+				if(cur.x < dimensions.x-1){
+					Vector2 nxt = new Vector2(cur.x+1, cur.y);
+					if(visits[nxt.x][nxt.y] == 0)stack.push(nxt);
+				}	
+				if(cur.y < dimensions.y-1){
+					Vector2 nxt = new Vector2(cur.x, cur.y+1);
+					if(visits[nxt.x][nxt.y] == 0)stack.push(nxt);
+				}	
+                 
+                 
+            }
+
+	}
 	public void setSquare(int x, int y, MapSquare flag){
 		map[x][y] = flag;
 	}
@@ -31,7 +69,8 @@ public class Map{
 		map[x][y].setBlocked(blocked);
 		map[x][y].setParent(parent);
 	}
-
+	
+	
 
 	public MapSquare getMapSquare(int x, int y){ return map[x][y]; }
 	
