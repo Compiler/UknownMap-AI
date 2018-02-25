@@ -15,24 +15,32 @@ public class MapHandler{
 			line = bufferedReader.readLine();
 			int split = line.indexOf(',');
 			int width = Integer.parseInt(line.substring(0,split));
-			int height = Integer.parseInt(line.substring(split, line.length()));
+			int height = Integer.parseInt(line.substring(split+1, line.length()));
 			Map map = new Map(width, height);
             while((line = bufferedReader.readLine()) != null) {
 				int sp1 = line.indexOf('|');
-				int sp2 = line.substring(sp1).indexOf('|');
+				int sp2 = line.substring(sp1+1).indexOf('|');
 				for(int x = 0; x < width; x++){
+					System.out.println("Parsing:" + line);
 					String cur = line.substring(sp1,sp2);
+					System.out.println("Current line: \"" + cur + "\"");
 					int indexOfBlocked = 0;
-					while(cur.charAt(indexOfBlocked) - '9' >= 0) indexOfBlocked++;
-
+					while(cur.charAt(indexOfBlocked) - '9' >= 0 || cur.charAt(indexOfBlocked) == 32) indexOfBlocked++;
+					indexOfBlocked++;
+					System.out.println("Index of blocked var at: " + indexOfBlocked);	
 					int h = Integer.parseInt(cur.substring(2, indexOfBlocked));
-					int g = Integer.parseInt(cur.substring(indexOfBlocked, cur.length() - 1));
+					System.out.println("H value of: " + h);
+					int g = Integer.parseInt(cur.substring(indexOfBlocked+1, cur.length()));
+					System.out.println("G value of: " + g);
 					char blocked = cur.charAt(indexOfBlocked);
+					System.out.println("Blocked value of: " + blocked);
 					map.setSquare(x, height-1, h, g, blocked == 'X');
 				
 					sp1 = sp2;
-					if(line.substring(sp1) != null)
-						sp2 = line.substring(sp1).indexOf('|');
+					System.out.println(line.substring(sp1+1));
+					sp2 = line.substring(sp1+2).indexOf('|') + sp1;
+					sp1++;sp2++;
+					System.out.println(sp1 + " ~ " + sp2);
 				}
 				height-=1;
             }   
