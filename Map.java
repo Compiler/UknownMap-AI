@@ -85,7 +85,8 @@ public class Map{
 	
 
 	public MapSquare getMapSquare(int x, int y){ return map[x][y]; }
-	
+	public Vector2 getDimensions(){return dimensions;}
+	public MapSquare[][] getMap(){return map;}
 	public void printMap(){
 		System.out.print('|');
 		for(int i = dimensions.y-1; i > -1; i--){
