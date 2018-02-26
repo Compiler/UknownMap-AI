@@ -16,7 +16,7 @@ public class MapSquare implements Comparable<MapSquare>{
 		this.position = new Vector2(x,y);
 	}
 
-	public char getDirection(MapSquare parent){
+	public char getDirection(){
 		if(parent == null) return ' ';
 		Vector2 pp = parent.getPosition();
 		if(pp.x > position.x) return '>';
@@ -38,7 +38,7 @@ public class MapSquare implements Comparable<MapSquare>{
 	public void setBlocked(boolean blocked){this.blocked=blocked;}
 	public void setParent(MapSquare p){this.parent = p;}	
 	public String toString(){
-		return ""+ getDirection(parent) +"" + (g==999 ? "**" : g) + "" + (blocked ? 'X' : '_') + "" + h+ "" +  getDirection(parent);
+		return ""+ getDirection() +"" + (g==999 ? "**" : g) + "" + (blocked ? 'X' : '_') + "" + h+ "" +  getDirection();
 	}
 
 
