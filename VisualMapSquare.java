@@ -47,19 +47,19 @@ public class VisualMapSquare{
 		if(info.getDirection() != ' '){
 			switch(info.getDirection()){
 				case '^': adir.x = position.x;
-						adir.y = position.y - dimensions.y;
-			g2.drawString(""+String.format("%0" + (dimensions.x+1) + "d", 0).replace("0", ""+info.getDirection()), adir.x, adir.y);
+						adir.y = position.y - dimensions.y - 50;
+			g2.drawString(""+String.format("%0" + (1) + "d", 0).replace("0", ""+info.getDirection()), (int)rect.getX(), (int)rect.getY()/1);
 						  		  		  break;
 				
 				case 'v': adir.x = position.x;
 						adir.y = position.y;
-				g2.drawString(""+String.format("%0" + (dimensions.x+1) + "d", 0).replace("0", ""+info.getDirection()), adir.x, adir.y);
+				g2.drawString(""+String.format("%0" + (1) + "d", 0).replace("0", ""+info.getDirection()), adir.x, adir.y);
 						  break;
-				case '>': adir.x = position.x+dimensions.x;
+				case 'a': adir.x = position.x+dimensions.x;
 						adir.y = position.y;
 						  for(int i = 0; i < dimensions.y/5; i++)g2.drawString(">", adir.x + dimensions.x, adir.y - 5*i);
 					break;
-				case '<': adir.x = position.x;
+				case 'g': adir.x = position.x;
 						adir.y = position.y - dimensions.y;
 						for(int i = 0; i < dimensions.y/5; i++)g2.drawString(">", adir.x, adir.y - 5*i);
 						break;
@@ -68,7 +68,7 @@ public class VisualMapSquare{
 		}			
 		if(info.isBlocked()) g2.fill(rect);
 		else g2.draw(rect);
-		g2.drawString(hs, position.x+3, position.y + dimensions.y - 1);
+		g2.drawString(hs + " p="+(info.getParent() == null ? "" : info.getParent().getPosition()), position.x+3, position.y + dimensions.y - 1);
         g2.drawString(gs, position.x+3, position.y - (dimensions.y /3) + dimensions.y - 1);
         g2.drawString(fs, position.x+3, position.y- (2*dimensions.y / 3) + dimensions.y - 1); 
 		

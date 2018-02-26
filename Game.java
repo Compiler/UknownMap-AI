@@ -19,10 +19,10 @@ public class Game extends JPanel implements KeyListener {
 		map = new Map(mapDims.x,mapDims.y);
 		map.createRandomMap();
 		squares = new VisualMapSquare[map.getDimensions().x][map.getDimensions().y];
-		for(int i = 0; i < squares.length; i++){
-			for(int k = 0; k < squares[i].length; k++){
-				squares[i][k] = new VisualMapSquare(map.getMapSquare(i,k), new Vector2((Core.DIMENSIONS.x / mapDims.x), Core.DIMENSIONS.y / (mapDims.y+1)));
-				squares[i][k].setPosition(new Vector2((i*squares[i][k].getDimensions().x), k *squares[i][k].getDimensions().y + 5*10));
+		for(int i = squares.length-1; i >= 0; i--){
+			for(int k = 0; k < squares.length; k++){
+				squares[k][i] = new VisualMapSquare(map.getMapSquare(k,i), new Vector2((Core.DIMENSIONS.x / mapDims.x), Core.DIMENSIONS.y / (mapDims.y+1)));
+				squares[k][i].setPosition(new Vector2((k*squares[k][i].getDimensions().x), i *squares[k][i].getDimensions().y + 5*10));
 			}
 		}	
 
