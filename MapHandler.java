@@ -25,8 +25,8 @@ public class MapHandler{
 					int indexOfBlocked = 0;
 					while(cur.charAt(indexOfBlocked) - '9' >= 0 || cur.charAt(indexOfBlocked) == 32) indexOfBlocked++;
 					indexOfBlocked++;
-					int h = Integer.parseInt(cur.substring(2, indexOfBlocked));
-					int g = Integer.parseInt(cur.substring(indexOfBlocked+1, cur.length()));
+					int g = Integer.parseInt(cur.substring(2, indexOfBlocked));
+					int h = Integer.parseInt(cur.substring(indexOfBlocked+1, cur.length()));
 					char blocked = cur.charAt(indexOfBlocked);
 					map.setSquare(x, height-1, h, g, blocked == 'X');
 					sp1 = sp2;

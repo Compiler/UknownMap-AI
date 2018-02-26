@@ -72,7 +72,6 @@ public class Map{
 	public void setSquare(int x, int y, MapSquare flag){
 		map[x][y] = flag;
 	}
-	public void setSquareParent(int x, int y, MapSquare parent){map[x][y].setParent(parent);}
 	public void setSquare(int x, int y, int h, int g, boolean blocked){
 		map[x][y].setG(g);map[x][y].setH(h);
 		map[x][y].setBlocked(blocked);
@@ -80,20 +79,13 @@ public class Map{
 	public void setSquare(int x, int y, int h){
 		map[x][y].setH(h);
 	}
-	public void setSquare(int x, int y, int g, int f){
-		map[x][y].setG(g);map[x][y].setF(f);
-	}
 	public void setSquare(int x, int y, int h, int g, boolean blocked, MapSquare parent){
 		map[x][y].setG(g);map[x][y].setH(h);
 		map[x][y].setBlocked(blocked);
 		map[x][y].setParent(parent);
 	}
 	
-	public boolean isValid(Vector2 position){return isValid(position.x, position.y);}
-	public boolean isValid(MapSquare cell){return isValid(cell.getPosition());}
-	public boolean isValid(int x, int y){
-		if(x >= 0 && y >= 0 && x < dimensions.x && y < dimensions.y) return true;
-		return false;}
+	
 
 	public Vector2 getDimensions(){return dimensions;}
 	public MapSquare getMapSquare(int x, int y){ return map[x][y]; }
@@ -117,7 +109,7 @@ public class Map{
 			System.out.print(String.format("%0" + (line.length()+1) + "d", 0).replace("0", "-") +"\n|"+ line);
 
 			if(i != 0) System.out.println("");
-			else System.out.println("\n"+String.format("%0" + (line.length()+1) + "d", 0).replace("0", "-"));
+			else System.out.println();
 		}	
 	}
 
