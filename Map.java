@@ -88,12 +88,12 @@ public class Map{
 	public Vector2 getDimensions(){return dimensions;}
 	public MapSquare[][] getMap(){return map;}
 	public void printMap(){
-		System.out.println(String.format("%0" + (dimensions.x*6+1) + "d", 0).replace("0", "-"));
+		System.out.println(ColorTuples.RED + String.format("%0" + (dimensions.x*6+1) + "d", 0).replace("0", "-")+ ColorTuples.RESET);
 		System.out.print('|');
 		for(int i = dimensions.y-1; i > -1; i--){
 			for(int k = 0; k < dimensions.x; k++)
 				System.out.print(map[k][i] + "|");
-			System.out.print("\n" + String.format("%0" + (dimensions.x*6+1) + "d", 0).replace("0", "-") + "\n|");
+			System.out.print("\n"+ColorTuples.RED + String.format("%0" + (dimensions.x*6+1) + "d", 0).replace("0", "-")+ "\n|" + ColorTuples.RESET);
 		}	
 	}
 
