@@ -42,7 +42,7 @@ public class MapSquare implements Comparable<MapSquare>{
 	}
 
 
-	public static int tie_breaking_method = 0;
+	public static int tie_breaking_method = 1;
 	@Override
 	public int compareTo(MapSquare s1){
 		int f1 = h + g;

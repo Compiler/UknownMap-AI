@@ -25,7 +25,8 @@ public class Core{
 		Vector2 start = new Vector2(0,4);
 		//regenerateMaps();
 		
-		MapTester.FBMaps("TieBreaking.txt");
+		//MapTester.FBMaps("TieBreaking.txt");
+		MapTester.ForBackMaps("Forward_Backward.txt");	
 		Scanner scan = new Scanner(System.in);
 	
 		String answer;

@@ -37,4 +37,31 @@ public class MapTester{
         }		
 				MapSquare.tie_breaking_method = 0;
 	}	
+	public static void ForBackMaps(String fileName){
+	    try{
+
+
+            FileWriter fileWriter = new FileWriter("Results/"+fileName);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write("Goal\tMap#\tForward\tBackward\n-----------------------------------------------------------------------------\n");
+			Vector2 start = new Vector2(0,0);
+			Vector2 goal = new Vector2(0,0);
+			Map map;
+			for(int j = 0; j <50; j++){
+
+
+				map = MapHandler.loadMap("Maps/map_"+(j+1) +".txt");
+				goal.x = map.getDimensions().x - 1;
+				start.y = map.getDimensions().y - 1;
+				int found = Algorithms.repeatedAStarForward(start, goal, map);
+				map = MapHandler.loadMap("Maps/map_"+(j+1) +".txt");
+				int found2 = Algorithms.repeatedAStarForward(goal, start, map);
+				bufferedWriter.write((found == -1 ? "No" : "Yes") + "\t\t"+(j+1) + "\t\t"+found+"\t\t"+found2);
+            	bufferedWriter.newLine();
+			}
+            bufferedWriter.close();
+     	}catch(IOException ex) {
+            ex.printStackTrace();
+        }		
+	}	
 }

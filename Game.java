@@ -13,7 +13,7 @@ public class Game extends JPanel implements KeyListener {
 	private Font font, menu;
 	private Map map;
 	private String d1 = "1.)Generate Random map";
-	private String d2 = "2.)Repeated Forward A*";
+	private String d2 = "2.)Repeated Forward A*\t\t0.) Toggle tie-breaking method";
 	private String goal = "";
 	Vector2 mapDims = new Vector2(101, 101);
 	public Game(){
@@ -61,6 +61,9 @@ public class Game extends JPanel implements KeyListener {
 				map = MapHandler.loadMap("Maps/map_" + (r.nextInt(49) + 1) + ".txt");
 				//map.createRandomMap();
 		}
+		if(code == KeyEvent.VK_0)
+			if(MapSquare.tie_breaking_method == 0) MapSquare.tie_breaking_method = 1;
+			else MapSquare.tie_breaking_method = 0;
 		if(code == KeyEvent.VK_2){
 			int found = Algorithms.repeatedAStarForward(new Vector2(0, 0), new Vector2(map.getDimensions().x-1, map.getDimensions().y-1),map);
 			if(found != -1) goal = "Goal was found in " + found + " steps.";

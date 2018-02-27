@@ -68,8 +68,16 @@ public class VisualMapSquare{
 		
 		}			
 		g2.setColor(Color.black);	
-		if(info.isBlocked()) g2.fill(rect);
-		else g2.draw(rect);
+		if(info.isBlocked()){
+			g2.fill(rect);
+		}
+		else if(info.getDirection() != ' '){
+		g2.setColor(Color.green);
+		g2.fill(rect);
+		} 
+		g2.setColor(Color.black);	
+				
+		g2.draw(rect);
 		//g2.drawString(hs + " p="+(info.getParent() == null ? "" : info.getParent().getPosition()), position.x+3, position.y + dimensions.y - 1);
         //g2.drawString(gs, position.x+3, position.y - (dimensions.y /3) + dimensions.y - 1);
         //g2.drawString(fs, position.x+3, position.y- (2*dimensions.y / 3) + dimensions.y - 1); 
