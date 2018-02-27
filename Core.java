@@ -24,7 +24,7 @@ public class Core{
 		Vector2 goal = new Vector2(4,0);
 		Vector2 start = new Vector2(0,4);
 		//regenerateMaps();
-		MapTester.AdaptiveMaps("Adaptive.txt");	
+		//MapTester.AdaptiveMaps("Adaptive.txt");	
 		//MapTester.FBMaps("TieBreaking.txt");
 		//MapTester.ForBackMaps("Forward_Backward.txt");	
 		Scanner scan = new Scanner(System.in);
