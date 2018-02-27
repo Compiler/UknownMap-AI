@@ -4,6 +4,7 @@ import java.awt.RenderingHints;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.*;
+import java.util.*;
 @SuppressWarnings("serial")
 public class Game extends JPanel implements KeyListener {
 
@@ -13,9 +14,9 @@ public class Game extends JPanel implements KeyListener {
 	private Map map;
 	private String d1 = "1.)Generate Random map";
 	private String d2 = "2.)Repeated Forward A*";
-
+	private String goal = "";
+	Vector2 mapDims = new Vector2(101, 101);
 	public Game(){
-		Vector2 mapDims = new Vector2(10, 10);
 		map = new Map(mapDims.x,mapDims.y);
 		map.createRandomMap();
 		squares = new VisualMapSquare[map.getDimensions().x][map.getDimensions().y];
@@ -39,7 +40,8 @@ public class Game extends JPanel implements KeyListener {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
             RenderingHints.VALUE_ANTIALIAS_ON);
     	g2d.setFont(menu);	
-		g2d.drawString(d1, 0, 00);
+		g2d.drawString(goal, 5, 35);
+		g2d.drawString(d1, 5, 20);
 		g2d.drawString(d2, d1.length() * 15, 20);
     	g2d.setFont(font);
 		for(int i = 0; i < squares.length; i++){
@@ -50,13 +52,23 @@ public class Game extends JPanel implements KeyListener {
 		}	
 
     }
-
+	Random r = new Random();
 	public void keyPressed(KeyEvent e){
 		int code = e.getKeyCode();
+		
 		if(code == KeyEvent.VK_1){
-				map=new Map(10,10);map.createRandomMap();}
-		if(code == KeyEvent.VK_2)
-			Algorithms.repeatedAStarForward(new Vector2(0, 0), new Vector2(map.getDimensions().x-1, map.getDimensions().y-1),map);
+				map=new Map(mapDims.x,mapDims.y);
+				map = MapHandler.loadMap("Maps/map_" + (r.nextInt(49) + 1) + ".txt");
+				//map.createRandomMap();
+		}
+		if(code == KeyEvent.VK_2){
+			int found = Algorithms.repeatedAStarForward(new Vector2(0, 0), new Vector2(map.getDimensions().x-1, map.getDimensions().y-1),map);
+			if(found != -1) goal = "Goal was found in " + found + " steps.";
+			else goal = "Could not find goal";
+		}
+		if(code == KeyEvent.VK_3){
+				map=MapHandler.loadMap("Maps/open_map.txt");
+		}
 	}
 	public void keyReleased(KeyEvent e){
 	}

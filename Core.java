@@ -9,12 +9,23 @@ public class Core{
 	
 	public static void CLEAR(){for(int i = 0; i < 15; i++)System.out.println('\n');}
 
+	public static void regenerateMaps(){
+		
+		Map map = new Map(101, 101);
+		for(int i = 0; i < 50; i++){
+			map = new Map(101, 101);
+			map.createRandomMap();
+			MapHandler.writeMap("map_"+(i+1)+".txt", map);
+			
+		}
+	}
 	public static void main(String... a)throws InterruptedException{
-		Map map = MapHandler.loadMap("Maps/map1.txt");
-		
+		Map map = MapHandler.loadMap("Maps/5x5.txt");	
 		Vector2 goal = new Vector2(4,0);
+		Vector2 start = new Vector2(0,4);
+		//regenerateMaps();
 		
-
+		MapTester.FBMaps("TieBreaking.txt");
 		Scanner scan = new Scanner(System.in);
 	
 		String answer;
@@ -30,10 +41,10 @@ public class Core{
 
 		switch(answer){
 				case "1":
-						Algorithms.repeatedAStarForward(new Vector2(1,0), goal, map);
+						Algorithms.repeatedAStarForward(start, goal, map);
 						break;
 				case "7":
-						Algorithms.repeatedAStarForward(goal, new Vector2(1,0), map);
+						Algorithms.repeatedAStarForward(goal, start, map);
 						break;
 				case "2":
 					Algorithms.generateHValues(goal, map);

@@ -22,9 +22,8 @@ public class MapHandler{
 				int sp2 = line.substring(sp1+1).indexOf('|');
 				for(int x = 0; x < width; x++){
 					String cur = line.substring(sp1,sp2);
-					int indexOfBlocked = 0;
-					while(cur.charAt(indexOfBlocked) - '9' >= 0 || cur.charAt(indexOfBlocked) == 32) indexOfBlocked++;
-					indexOfBlocked++;
+					System.out.println("parsing: \"" + cur + "\"");
+					int indexOfBlocked = cur.indexOf('_') == -1 ? cur.indexOf('X') : cur.indexOf('_');
 					int g = Integer.parseInt(cur.substring(2, indexOfBlocked));
 					int h = Integer.parseInt(cur.substring(indexOfBlocked+1, cur.length()));
 					char blocked = cur.charAt(indexOfBlocked);

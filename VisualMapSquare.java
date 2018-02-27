@@ -45,6 +45,7 @@ public class VisualMapSquare{
 	private Vector2 adir = new Vector2(0,0);
 	public void render(Graphics2D g2){
 		if(info.getDirection() != ' '){
+			g2.setColor(Color.green);
 			switch(info.getDirection()){
 				case '^': adir.x = position.x;
 						adir.y = position.y - dimensions.y - 50;
@@ -66,11 +67,12 @@ public class VisualMapSquare{
 			}
 		
 		}			
+		g2.setColor(Color.black);	
 		if(info.isBlocked()) g2.fill(rect);
 		else g2.draw(rect);
-		g2.drawString(hs + " p="+(info.getParent() == null ? "" : info.getParent().getPosition()), position.x+3, position.y + dimensions.y - 1);
-        g2.drawString(gs, position.x+3, position.y - (dimensions.y /3) + dimensions.y - 1);
-        g2.drawString(fs, position.x+3, position.y- (2*dimensions.y / 3) + dimensions.y - 1); 
+		//g2.drawString(hs + " p="+(info.getParent() == null ? "" : info.getParent().getPosition()), position.x+3, position.y + dimensions.y - 1);
+        //g2.drawString(gs, position.x+3, position.y - (dimensions.y /3) + dimensions.y - 1);
+        //g2.drawString(fs, position.x+3, position.y- (2*dimensions.y / 3) + dimensions.y - 1); 
 		
 		
 	

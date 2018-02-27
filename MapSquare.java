@@ -38,16 +38,22 @@ public class MapSquare implements Comparable<MapSquare>{
 	public void setBlocked(boolean blocked){this.blocked=blocked;}
 	public void setParent(MapSquare p){this.parent = p;}	
 	public String toString(){
-		return ""+ getDirection() +"" + (g==999 ? "**" : g) + "" + (blocked ? 'X' : '_') + "" + h+ "" +  getDirection();
+		return ""+ getDirection() +"" + g + "" + (blocked ? 'X' : '_') + "" + h+ "" +  getDirection();
 	}
 
 
-
+	public static int tie_breaking_method = 0;
 	@Override
 	public int compareTo(MapSquare s1){
 		int f1 = h + g;
 		int f2 = s1.getH() + s1.getG();
-		return f1 - f2;	
+		if(f1 == f2){
+			if(tie_breaking_method == 0)
+				return (999 * g - f1) - (999* s1.getG() - f2);
+			else return (999 * f1 - g) - (999*f2 - s1.getG());
+		}
+
+		return f1- f2;
 	}
 
 }
